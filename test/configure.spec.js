@@ -4,7 +4,6 @@ if (typeof LogicalPhrase === 'undefined') {
 
 var LP, data;
 
-//TODO: seperate into different specs
 describe('logical-phrase', function() {
 
   describe('module', function() {
@@ -15,9 +14,10 @@ describe('logical-phrase', function() {
   });
 
   describe('configure', function() {
-    LP = new LogicalPhrase();
 
-    it('prefix', function() {
+    it('should be respected', function() {
+      LP = new LogicalPhrase();
+
       LP.configure({
         'prefix': 'x',
         'truthy': 'did',
@@ -34,111 +34,14 @@ describe('logical-phrase', function() {
     });
   });
 
-  describe('generate', function() {
-    beforeEach(function() {
-      LP = new LogicalPhrase();
-    });
-
-    it('case 1', function() {
-      data = {
-        "items": [
-          {
-            "text": "x"
-          },
-          {
-            "text": "y"
-          }
-        ],
-        "type": "AND"
-      };
-
-      expect(LP.generateBy(data)).toBe('x AND y');
-    });
-
-    it('case 2', function() {
-      data = {
-        "items": [
-          {
-            "text": "x"
-          },
-          {
-            "text": "y",
-            "type": "NOT"
-          }
-        ],
-        "type": "AND"
-      };
-
-      expect(LP.generateBy(data)).toBe('x AND NOT y');
-    });
-
-    it('case 3', function() {
-      data = {
-        "items": [
-          {
-            "items": [
-              {
-                "text": "x"
-              },
-              {
-                "text": "y"
-              }
-            ],
-            "type": "OR"
-          },
-          {
-            "text": "z",
-            "type": "NOT"
-          }
-        ],
-        "type": "AND"
-      };
-
-      expect(LP.generateBy(data)).toBe('x OR y AND NOT z');
-    });
-
-    it('case 4', function() {
-      data = {
-        "items": [
-          {
-            "items": [
-              {
-                "items": [
-                  {
-                    "text": "x"
-                  },
-                  {
-                    "text": "y"
-                  }
-                ],
-                "type": "OR"
-              }
-            ],
-            "type": "NOT"
-          },
-          {
-            "text": "z"
-          }
-        ],
-        "type": "AND"
-      };
-
-      expect(LP.generateBy(data)).toBe('NOT x OR y AND z');
-    });
-  });
-
-  describe('combined', function() {
+  describe('prefix / truthy / values', function() {
     var prefix = 'select ones that';
     var truthy = 'did';
     var falsy = 'did not';
 
-    beforeEach(function() {
+    it('should be applied', function() {
       LP = new LogicalPhrase();
-    });
 
-    //TODO: tests for each property
-
-    it('should reflect prefix/truthy/values', function() {
       LP.configure({
         'prefix': prefix,
         'truthy': truthy,
@@ -161,8 +64,13 @@ describe('logical-phrase', function() {
       expect(LP.generateBy(data)).toBe(
         prefix + ' ' + truthy + ' x AND ' + falsy + ' y');
     });
+  });
 
-    it('should wrap with certain level elements', function() {
+  describe('levelWrappers', function() {
+
+    it('should work', function() {
+      LP = new LogicalPhrase();
+
       LP.configure({
         'levelWrappers': [
           '<div class="level-0">',
@@ -301,5 +209,5 @@ describe('logical-phrase', function() {
           'z OR w OR NOT q' +
         '</b>');
     });
-  });
+  })
 });
