@@ -1,7 +1,6 @@
 {
   "name": "logical-phrase",
   "version": "0.1.0",
-  "private": true,
   "description": "Logical phrase generator",
   "main": "dist/index.js",
   "scripts": {
