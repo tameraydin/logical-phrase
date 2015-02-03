@@ -20,7 +20,7 @@
     "node_modules",
     "test",
     "src",
-    "Gruntfile.js",
+    "gulpfile.js",
     "package.json"
   ],
   "authors": "Tamer Aydin",
