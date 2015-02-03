@@ -2,6 +2,7 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jasmine = require('gulp-jasmine');
+var istanbul = require('gulp-istanbul');
 var uglify = require('gulp-uglify');
 var rename = require("gulp-rename");
 var header = require('gulp-header');
@@ -46,6 +47,18 @@ gulp.task('test', function() {
     .pipe(jasmine());
 });
 
+gulp.task('coverage', function(cb) {
+  gulp.src(PATH.SOURCE + '*.js')
+    .pipe(istanbul())
+    .pipe(istanbul.hookRequire())
+    .on('finish', function() {
+      gulp.src(PATH.TEST + '*.spec.js')
+        .pipe(jasmine())
+        .pipe(istanbul.writeReports())
+        .on('end', cb);
+    });
+});
+
 gulp.task('copy', function() {
   return gulp.src(PATH.SOURCE + '*.js')
     .pipe(rename({
@@ -84,6 +97,7 @@ gulp.task('autotest', function() {
 gulp.task('build', ['clean'], function(cb) {
   runSequence(
     'jshint',
+    'coverage',
     'copy',
     'uglify',
     'banner',

@@ -3,6 +3,8 @@
 
   var root = this;
 
+  //TODO: object validation
+
   /**
    *
    * {
@@ -24,7 +26,6 @@
     'NOT': 'falsy'
   };
 
-  //TODO: use call instead of passing 'lp' as argument
   function _wrap(lp, text, level) {
     if (lp.levelWrappers[level]) {
       var wrapperStartTag = lp.levelWrappers[level].replace(' /', '');

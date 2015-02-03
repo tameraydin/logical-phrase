@@ -209,5 +209,5 @@ describe('logical-phrase', function() {
           'z OR w OR NOT q' +
         '</b>');
     });
-  })
+  });
 });
