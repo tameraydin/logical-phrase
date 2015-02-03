@@ -1,1 +1,65 @@
 # logical-phrase
+
+Transforms following JSON:
+```json
+{
+  "items": [
+    {
+      "value": "foo"
+    },
+    {
+      "value": "bar"
+    },
+    {
+      "value": "baz",
+      "operator": "NOT"
+    }
+  ],
+  "operator": "AND"
+}
+```
+into:
+``foo AND bar AND NOT baz``
+
+
+Furthermore, with a configuration as follows:
+```javascript
+var lp = new LogicalPhrase();
+
+lp.configure({
+  'prefix': 'Select users who',
+  'truthy': 'did',
+  'falsy': 'did not',
+  'and': 'and',
+  'or': 'or'
+});
+```
+you can transform this
+```json
+{
+  "items": [
+    {
+      "value": "visit 'site.homepage'",
+      "operator": "NOT"
+    },
+    {
+      "items": [
+        {
+          "value": "use campaign 'x'"
+        },
+        {
+          "value": "use campaign 'y'"
+        }
+      ],
+      "operator": "OR"
+    }
+  ],
+  "operator": "AND"
+}
+```
+into:
+``Select users who did not visit 'site.homepage' and did use campaign 'x' or did use campaign 'y'``
+
+It is also possible to wrap each level of items into different HTML tags.
+
+See /test for more examples.
