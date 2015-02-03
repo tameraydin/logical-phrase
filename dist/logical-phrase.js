@@ -93,7 +93,7 @@
   };
 
   LogicalPhrase.prototype = {
-    learn: function(obj) {
+    configure: function(obj) {
       for (var key in obj) {
         if (typeof this[key] !== 'undefined') {
           this[key] = obj[key];

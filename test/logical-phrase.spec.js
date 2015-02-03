@@ -14,11 +14,11 @@ describe('logical-phrase', function() {
     });
   });
 
-  describe('learn', function() {
+  describe('configure', function() {
     LP = new LogicalPhrase();
 
     it('prefix', function() {
-      LP.learn({
+      LP.configure({
         'prefix': 'x',
         'truthy': 'did',
         'levelWrappers': [
@@ -139,7 +139,7 @@ describe('logical-phrase', function() {
     //TODO: tests for each property
 
     it('should reflect prefix/truthy/values', function() {
-      LP.learn({
+      LP.configure({
         'prefix': prefix,
         'truthy': truthy,
         'falsy': falsy
@@ -163,7 +163,7 @@ describe('logical-phrase', function() {
     });
 
     it('should wrap with certain level elements', function() {
-      LP.learn({
+      LP.configure({
         'levelWrappers': [
           '<div class="level-0">',
           '<span class="level-1" />',
@@ -210,7 +210,7 @@ describe('logical-phrase', function() {
       expect(LP.generateBy(data)).toBe(
         '<div class="level-0"><span class="level-1">x OR y</span> AND NOT z</div>');
 
-      LP.learn({
+      LP.configure({
         'levelWrappers': [
           null,
           '<b>',
