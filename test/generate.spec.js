@@ -15,13 +15,13 @@ describe('logical-phrase', function() {
       data = {
         "items": [
           {
-            "text": "x"
+            "value": "x"
           },
           {
-            "text": "y"
+            "value": "y"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe('x AND y');
@@ -31,14 +31,14 @@ describe('logical-phrase', function() {
       data = {
         "items": [
           {
-            "text": "x"
+            "value": "x"
           },
           {
-            "text": "y",
-            "type": "NOT"
+            "value": "y",
+            "operator": "NOT"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe('x AND NOT y');
@@ -50,20 +50,20 @@ describe('logical-phrase', function() {
           {
             "items": [
               {
-                "text": "x"
+                "value": "x"
               },
               {
-                "text": "y"
+                "value": "y"
               }
             ],
-            "type": "OR"
+            "operator": "OR"
           },
           {
-            "text": "z",
-            "type": "NOT"
+            "value": "z",
+            "operator": "NOT"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe('x OR y AND NOT z');
@@ -77,22 +77,22 @@ describe('logical-phrase', function() {
               {
                 "items": [
                   {
-                    "text": "x"
+                    "value": "x"
                   },
                   {
-                    "text": "y"
+                    "value": "y"
                   }
                 ],
-                "type": "OR"
+                "operator": "OR"
               }
             ],
-            "type": "NOT"
+            "operator": "NOT"
           },
           {
-            "text": "z"
+            "value": "z"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe('NOT x OR y AND z');

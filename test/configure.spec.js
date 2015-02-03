@@ -51,14 +51,14 @@ describe('logical-phrase', function() {
       data = {
         "items": [
           {
-            "text": "x"
+            "value": "x"
           },
           {
-            "text": "y",
-            "type": "NOT"
+            "value": "y",
+            "operator": "NOT"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe(
@@ -82,13 +82,13 @@ describe('logical-phrase', function() {
       data = {
         "items": [
           {
-            "text": "x"
+            "value": "x"
           },
           {
-            "text": "y"
+            "value": "y"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe(
@@ -99,20 +99,20 @@ describe('logical-phrase', function() {
           {
             "items": [
               {
-                "text": "x"
+                "value": "x"
               },
               {
-                "text": "y"
+                "value": "y"
               }
             ],
-            "type": "OR"
+            "operator": "OR"
           },
           {
-            "text": "z",
-            "type": "NOT"
+            "value": "z",
+            "operator": "NOT"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe(
@@ -131,69 +131,69 @@ describe('logical-phrase', function() {
           {
             "items": [
               {
-                "text": "x"
+                "value": "x"
               },
               {
-                "text": "y"
+                "value": "y"
               }
             ],
-            "type": "OR"
+            "operator": "OR"
           },
           {
             "items": [
               {
-                "text": "a"
+                "value": "a"
               },
               {
-                "text": "b"
+                "value": "b"
               }
             ],
-            "type": "AND"
+            "operator": "AND"
           },
           {
-            "text": "c"
-          },
-          {
-            "items": [
-              {
-                "items": [
-                  {
-                    "text": "d"
-                  },
-                  {
-                    "text": "e"
-                  }
-                ],
-                "type": "OR"
-              },
-              {
-                "text": "f"
-              }
-            ],
-            "type": "AND"
+            "value": "c"
           },
           {
             "items": [
               {
                 "items": [
                   {
-                    "text": "z"
+                    "value": "d"
                   },
                   {
-                    "text": "w"
-                  },
-                  {
-                    "text": "q",
-                    "type": "NOT"
+                    "value": "e"
                   }
                 ],
-                "type": "OR"
+                "operator": "OR"
+              },
+              {
+                "value": "f"
               }
             ],
-            "type": "NOT"
+            "operator": "AND"
+          },
+          {
+            "items": [
+              {
+                "items": [
+                  {
+                    "value": "z"
+                  },
+                  {
+                    "value": "w"
+                  },
+                  {
+                    "value": "q",
+                    "operator": "NOT"
+                  }
+                ],
+                "operator": "OR"
+              }
+            ],
+            "operator": "NOT"
           }
         ],
-        "type": "AND"
+        "operator": "AND"
       };
 
       expect(LP.generateBy(data)).toBe(

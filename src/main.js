@@ -20,13 +20,13 @@
    */
 
   // LOCALS
-  var _TYPE_MAP = {
+  var _OPERATOR_MAP = {
     'AND': 'and',
     'OR': 'or',
     'NOT': 'falsy'
   };
 
-  function _wrap(lp, text, level) {
+  function _wrap(lp, value, level) {
     if (lp.levelWrappers[level]) {
       var wrapperStartTag = lp.levelWrappers[level].replace(' /', '');
       var wrapperEndTag = wrapperStartTag.split(' ')[0];
@@ -36,44 +36,44 @@
         wrapperEndTag += '>';
       }
 
-      text = wrapperStartTag + text + wrapperEndTag;
+      value = wrapperStartTag + value + wrapperEndTag;
     }
 
-    return text;
+    return value;
   }
 
 
   //TODO: optimize & simplify
-  function _getTypeText(lp, type, filter) {
-    var typeMap = _TYPE_MAP[type];
+  function _getOperatorValue(lp, operatorKey, filter) {
+    var operator = _OPERATOR_MAP[operatorKey];
 
-    return (type && (!filter || filter.indexOf(typeMap) > -1)) ?
-      (lp[typeMap] + ' ') : (lp.truthy ? lp.truthy + ' ' : '');
+    return (operatorKey && (!filter || filter.indexOf(operator) > -1)) ?
+      (lp[operator] + ' ') : (lp.truthy ? lp.truthy + ' ' : '');
   }
 
-  function _getText(lp, data, level) {
+  function _getValue(lp, data, level) {
     level = level || 0;
 
-    var itemTextList = [];
-    var typeText;
+    var itemValueList = [];
+    var operatorValue;
 
     for (var i = 0; i < data.items.length; i++) {
       var item = data.items[i];
-      typeText = _getTypeText(lp, item.type, ['falsy']);
+      operatorValue = _getOperatorValue(lp, item.operator, ['falsy']);
 
-      if (item.text) {
-        itemTextList.push(typeText + item.text + ' ');
+      if (item.value) {
+        itemValueList.push(operatorValue + item.value + ' ');
       }
 
       if (item.items) {
-        var nextLevel = (item.type && _TYPE_MAP[item.type] !== 'falsy') ? level + 1 : level;
+        var nextLevel = (item.operator && _OPERATOR_MAP[item.operator] !== 'falsy') ? level + 1 : level;
 
-        itemTextList.push(typeText + _getText(lp, item, nextLevel) + ' ');
+        itemValueList.push(operatorValue + _getValue(lp, item, nextLevel) + ' ');
       }
     }
 
     return (lp.prefix ? lp.prefix + ' ' : '') +
-      _wrap(lp, itemTextList.join(_getTypeText(lp, data.type)).replace(/^\s+|\s+$/g, ''), level);
+      _wrap(lp, itemValueList.join(_getOperatorValue(lp, data.operator)).replace(/^\s+|\s+$/g, ''), level);
   }
 
   // MODULE
@@ -97,7 +97,7 @@
       }
     },
     generateBy: function(data) {
-      return _getText(this, data);
+      return _getValue(this, data);
     }
   };
 
