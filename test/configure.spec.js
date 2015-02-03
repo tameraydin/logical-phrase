@@ -36,14 +36,75 @@ describe('logical-phrase', function() {
 
   describe('prefix / truthy / values', function() {
     var prefix = 'select ones that';
-    var truthy = 'did';
-    var falsy = 'did not';
 
     it('should be applied', function() {
       LP = new LogicalPhrase();
 
       LP.configure({
-        'prefix': prefix,
+        'prefix': prefix
+      });
+
+      data = {
+        "items": [
+          {
+            "value": "x"
+          },
+          {
+            "value": "y",
+            "operator": "NOT"
+          }
+        ],
+        "operator": "AND"
+      };
+
+      expect(LP.generateBy(data)).toBe(
+        prefix + ' x AND NOT y');
+    });
+
+    it('should work at second level', function() {
+      LP = new LogicalPhrase();
+
+      LP.configure({
+        'prefix': prefix
+      });
+
+      data = {
+        "items": [
+          {
+            "items": [
+              {
+                "value": "x"
+              },
+              {
+                "value": "y",
+                "operator": "NOT"
+              }
+            ],
+            "operator": "OR"
+          },
+          {
+            "value": "z",
+            "operator": "NOT"
+          }
+        ],
+        "operator": "AND"
+      };
+
+      expect(LP.generateBy(data)).toBe(
+        prefix + ' x OR NOT y AND NOT z');
+    });
+  });
+
+  describe('truthy / values', function() {
+    var truthy = 'did';
+    var falsy = 'did not';
+
+    beforeEach(function() {
+      LP = new LogicalPhrase();
+    });
+
+    it('should be applied', function() {
+      LP.configure({
         'truthy': truthy,
         'falsy': falsy
       });
@@ -62,7 +123,38 @@ describe('logical-phrase', function() {
       };
 
       expect(LP.generateBy(data)).toBe(
-        prefix + ' ' + truthy + ' x AND ' + falsy + ' y');
+        truthy + ' x AND ' + falsy + ' y');
+    });
+
+    it('should work at second level', function() {
+      LP.configure({
+        'truthy': truthy,
+        'falsy': falsy
+      });
+
+      data = {
+        "items": [
+          {
+            "value": "x",
+            "operator": "NOT"
+          },
+          {
+            "items": [
+              {
+                "value": "y"
+              },
+              {
+                "value": "z"
+              }
+            ],
+            "operator": "OR"
+          }
+        ],
+        "operator": "AND"
+      };
+
+      expect(LP.generateBy(data)).toBe(
+        falsy + ' x AND ' + truthy + ' y OR ' + truthy + ' z');
     });
   });
 

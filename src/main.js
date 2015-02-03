@@ -55,11 +55,14 @@
     level = level || 0;
 
     var itemValueList = [];
-    var operatorValue;
+    var operatorValue = '';
 
     for (var i = 0; i < data.items.length; i++) {
       var item = data.items[i];
-      operatorValue = _getOperatorValue(lp, item.operator, ['falsy']);
+
+      if (level === 0 || i !== 0) {
+        operatorValue = _getOperatorValue(lp, item.operator, ['falsy']);
+      }
 
       if (item.value) {
         itemValueList.push(operatorValue + item.value + ' ');
@@ -72,7 +75,7 @@
       }
     }
 
-    return (lp.prefix ? lp.prefix + ' ' : '') +
+    return (lp.prefix && level === 0 ? lp.prefix + ' ' : '') +
       _wrap(lp, itemValueList.join(_getOperatorValue(lp, data.operator)).replace(/^\s+|\s+$/g, ''), level);
   }
 
