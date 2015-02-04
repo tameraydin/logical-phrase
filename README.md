@@ -1,4 +1,4 @@
-# logical-phrase [![Build Status](http://img.shields.io/travis/tameraydin/logical-phrase/master.svg?style=flat)](https://travis-ci.org/tameraydin/logical-phrase)
+# logical-phrase [![Build Status](http://img.shields.io/travis/tameraydin/logical-phrase/master.svg?style=flat)](https://travis-ci.org/tameraydin/logical-phrase) [![Coverage Status](https://coveralls.io/repos/tameraydin/logical-phrase/badge.svg)](https://coveralls.io/r/tameraydin/logical-phrase)
 
 Transforms following JSON:
 ```json
@@ -22,7 +22,7 @@ into:
 ``foo AND bar AND NOT baz``
 
 
-Furthermore, with a configuration as follows:
+Furthermore, with a given configuration as follows:
 ```javascript
 var lp = new LogicalPhrase();
 
@@ -34,7 +34,7 @@ lp.configure({
   'or': 'or'
 });
 ```
-you can transform this
+it can transform this:
 ```json
 {
   "items": [
