@@ -2,3 +2,4 @@ language: node_js
 node_js: "0.10"
 before_install: npm install --global gulp
 install: npm install
+after_script: istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
