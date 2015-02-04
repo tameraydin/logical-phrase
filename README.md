@@ -1,4 +1,4 @@
-# logical-phrase [![Build Status](http://img.shields.io/travis/tameraydin/logical-phrase/master.svg?style=flat)](https://travis-ci.org/tameraydin/logical-phrase) [![Coverage Status](https://coveralls.io/repos/tameraydin/logical-phrase/badge.svg)](https://coveralls.io/r/tameraydin/logical-phrase)
+# logical-phrase [![Build Status](http://img.shields.io/travis/tameraydin/logical-phrase/master.svg?style=flat)](https://travis-ci.org/tameraydin/logical-phrase) [![Coverage Status](https://coveralls.io/repos/tameraydin/logical-phrase/badge.svg?branch=master)](https://coveralls.io/r/tameraydin/logical-phrase?branch=master)
 
 Transforms following JSON:
 ```json
