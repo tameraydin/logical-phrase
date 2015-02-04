@@ -1,4 +1,4 @@
-# logical-phrase
+# logical-phrase [![Build Status](http://img.shields.io/travis/tameraydin/logical-phrase/master.svg?style=flat)](https://travis-ci.org/tameraydin/logical-phrase)
 
 Transforms following JSON:
 ```json
