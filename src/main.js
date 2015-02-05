@@ -69,9 +69,7 @@
       }
 
       if (item.items) {
-        var nextLevel = (item.operator && _OPERATOR_MAP[item.operator] !== 'falsy') ? level + 1 : level;
-
-        itemValueList.push(operatorValue + _getValue(lp, item, nextLevel) + ' ');
+        itemValueList.push(operatorValue + _getValue(lp, item, level + 1) + ' ');
       }
     }
 

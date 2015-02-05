@@ -34,15 +34,18 @@ describe('logical-phrase', function() {
     });
   });
 
-  describe('prefix / truthy / values', function() {
+  describe('prefix', function() {
     var prefix = 'select ones that';
 
-    it('should be applied', function() {
+    beforeEach(function() {
       LP = new LogicalPhrase();
 
       LP.configure({
         'prefix': prefix
       });
+    });
+
+    it('should be applied', function() {
 
       data = {
         "items": [
@@ -61,12 +64,43 @@ describe('logical-phrase', function() {
         prefix + ' x AND NOT y');
     });
 
-    it('should work at second level', function() {
-      LP = new LogicalPhrase();
+    it('should not repeated if NOT operator is assigned to a list', function() {
 
-      LP.configure({
-        'prefix': prefix
-      });
+      data = {
+        "items": [
+          {
+            "operator": "OR",
+            "items": [
+              {
+                "value": "x"
+              }
+            ]
+          },
+          {
+            "operator": "NOT",
+            "items": [
+              {
+                "value": "z"
+              }
+            ]
+          },
+          {
+            "operator": "OR",
+            "items": [
+              {
+                "value": "w"
+              }
+            ]
+          }
+        ],
+        "operator": "AND"
+      };
+
+      expect(LP.generateBy(data)).toBe(
+        prefix + ' x AND NOT z AND w');
+    });
+
+    it('should work at second level', function() {
 
       data = {
         "items": [
@@ -298,7 +332,7 @@ describe('logical-phrase', function() {
         '<b><span>d OR e</span> AND f</b>' +
         ' AND NOT ' +
         '<b>' +
-          'z OR w OR NOT q' +
+          '<span>z OR w OR NOT q</span>' +
         '</b>');
     });
   });
