@@ -1,5 +1,5 @@
 /**
- * logical-phrase v0.1.0 (https://github.com/tameraydin/logical-phrase)
+ * logical-phrase v0.1.1 (https://github.com/tameraydin/logical-phrase)
  * Copyright 2015 Tamer Aydin
  * Licensed under MIT (http://tameraydin.mit-license.org/)
  */
@@ -74,9 +74,7 @@
       }
 
       if (item.items) {
-        var nextLevel = (item.operator && _OPERATOR_MAP[item.operator] !== 'falsy') ? level + 1 : level;
-
-        itemValueList.push(operatorValue + _getValue(lp, item, nextLevel) + ' ');
+        itemValueList.push(operatorValue + _getValue(lp, item, level + 1) + ' ');
       }
     }
 
