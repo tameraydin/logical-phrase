@@ -1,9 +1,9 @@
 # logical-phrase [![Build Status](http://img.shields.io/travis/tameraydin/logical-phrase/master.svg?style=flat-square)](https://travis-ci.org/tameraydin/logical-phrase) [![Coverage Status](https://img.shields.io/coveralls/tameraydin/logical-phrase/master.svg?style=flat-square)](https://coveralls.io/r/tameraydin/logical-phrase?branch=master)
 
 ```bash
-npm install local-phrase
+npm install logical-phrase
 # or 
-bower install local-phrase
+bower install logical-phrase
 ```
 
 Transforms following JSON:
