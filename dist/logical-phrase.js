@@ -1,6 +1,6 @@
 /**
- * logical-phrase v0.1.1 (https://github.com/tameraydin/logical-phrase)
- * Copyright 2015 Tamer Aydin
+ * logical-phrase v0.1.2 (https://github.com/tameraydin/logical-phrase)
+ * Copyright 2015 Tamer Aydin (http://tamerayd.in)
  * Licensed under MIT (http://tameraydin.mit-license.org/)
  */
 (function() {

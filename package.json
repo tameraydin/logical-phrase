@@ -1,8 +1,8 @@
 {
   "name": "logical-phrase",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Logical phrase generator",
-  "main": "dist/index.js",
+  "main": "dist/logical-phrase.js",
   "scripts": {
     "test": "./node_modules/.bin/jasmine-node ./test"
   },
@@ -17,11 +17,12 @@
     "or",
     "not"
   ],
-  "author": "Tamer Aydin",
-  "license": {
-    "type": "MIT",
-    "url": "http://tameraydin.mit-license.org/"
-  },
+  "author": "Tamer Aydin (http://tamerayd.in)",
+  "contributors": [{
+    "name": "Tamer Aydin",
+    "url": "http://tamerayd.in"
+  }],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/tameraydin/logical-phrase/issues"
   },
@@ -32,6 +33,10 @@
     "unused": true,
     "predef": []
   },
+  "engines": {
+    "node" : ">=0.8 <=0.12"
+  },
+  "dependencies": {},
   "devDependencies": {
     "coveralls": "^2.11.2",
     "del": "^1.1.1",

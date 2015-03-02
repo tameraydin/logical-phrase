@@ -19,7 +19,7 @@ var banner = [
     '/**',
     ' * <%= pkg.name %> v<%= pkg.version %> (<%= pkg.homepage %>)',
     ' * Copyright <%= new Date().getFullYear() %> <%= pkg.author %>',
-    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)',
+    ' * Licensed under <%= pkg.license %> (http://tameraydin.mit-license.org/)',
     ' */',
     ''
   ].join('\n');
