@@ -1,8 +1,6 @@
 (function() {
   'use strict';
 
-  var root = this;
-
   //TODO: object validation
 
   /**
@@ -102,13 +100,22 @@
     }
   };
 
-  if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = LogicalPhrase;
-    }
-    exports.LogicalPhrase = LogicalPhrase;
+  // EXPORT
+  var root = this;
+
+  /* istanbul ignore next */
+  if (typeof exports !== 'undefined' && typeof module !== 'undefined' && module.exports) {
+      module.exports = LogicalPhrase;
+
   } else {
-    root.LogicalPhrase = LogicalPhrase;
+    if (typeof define === 'function' && define.amd) {
+      define('LogicalPhrase', [], function() {
+        return LogicalPhrase;
+      });
+
+    } else {
+      root.LogicalPhrase = LogicalPhrase;
+    }
   }
 
 }).call(this);
