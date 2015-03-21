@@ -1,6 +1,6 @@
 {
   "name": "logical-phrase",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Logical phrase generator",
   "main": "dist/logical-phrase.js",
   "repository": {
