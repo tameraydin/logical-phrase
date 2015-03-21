@@ -24,13 +24,15 @@ describe('logical-phrase', function() {
         'levelWrappers': [
           '<div>',
           '<span>'
-        ]
+        ],
+        'nonExisting': undefined
       });
 
       expect(LP.prefix).toBe('x');
       expect(LP.truthy).toBe('did');
       expect(LP.levelWrappers[0]).toBe('<div>');
       expect(LP.levelWrappers[1]).toBe('<span>');
+      expect(LP.hasOwnProperty('nonExisting')).toBeFalsy();
     });
   });
 
